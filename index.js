@@ -3,7 +3,7 @@ const path = require('path')
 const fs = require('fs')
 
 const Manager = require("./lib/Manager");
-const Engineer = requrie("./lib/Engineer");
+const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
 const employeeQuestions = require("./lib/Employee-questions");
@@ -48,7 +48,7 @@ function generateHtmlFile() {
   writeToFile(htmlHolderArray);
 }
 
-// Add the intern profile to the teamProfileArr array.
+// Add the intern profile to the teamMemberArray array.
 function addInternProfile() {
   inquirer.prompt(internQuestions)
   .then (function(data) {
@@ -58,7 +58,7 @@ function addInternProfile() {
      const internSchool = data.internSchool;
      const teamMember = new Intern(internName, internId, internEmail, internSchool);
 
-     teamProfileArr.push(teamMember);
+     teamMemberArray.push(teamMember);
 
      // Populate the menu choices again to see what the user wants to do next.
      addNonManagerTeamMember();
@@ -68,7 +68,7 @@ function addInternProfile() {
 ////////////////////////////////////////////
 ////////////////////////////////////////////
 
-// Add the engineer profile to the teamProfileArr array.
+// Add the engineer profile to the teamMemberArray array.
 function addEngineerProfile() {
   inquirer.prompt(engineerQuestions)
   .then (function(data) {
@@ -78,7 +78,7 @@ function addEngineerProfile() {
      const engineerGithubUsername = data.engineerGithubUsername;
      const teamMember = new Engineer(engineerName, engineerId, engineerEmail, engineerGithubUsername);
      
-     teamProfileArr.push(teamMember);
+     teamMemberArray.push(teamMember);
 
      // Populate the menu choices again to see what the user wants to do next.
      addNonManagerTeamMember();
@@ -91,7 +91,7 @@ function addEngineerProfile() {
 // Populate the menu choices again to see what the user wants to do next.
 // Call the appropriate function based on the user's choice.
 function addNonManagerTeamMember() {
-  inquirer.prompt(addEmployeeQuestion)
+  inquirer.prompt(employeeQuestions)
   .then(function(data) {
      switch (data.menuChoices) {
         case "Add an Engineer Profile":
@@ -110,7 +110,7 @@ function addNonManagerTeamMember() {
 ////////////////////////////////////////////
 ////////////////////////////////////////////
 
-// Add the engineer profile to the teamProfileArr array.
+// Add the engineer profile to the teamMemberArray array.
 function addManagerProfile() {
   inquirer.prompt(managerQuestions)
   .then(function(data) {
@@ -120,7 +120,7 @@ function addManagerProfile() {
      const managerOfficeNum = data.managerOfficeNum;
      const teamMember = new Manager(managerName, managerId, managerEmail, managerOfficeNum);
      
-     teamProfileArr.push(teamMember);
+     teamMemberArray.push(teamMember);
 
      // Populate the menu choices again to see what the user wants to do next.
      addNonManagerTeamMember();
@@ -150,7 +150,7 @@ function init() {
   ])
   .then(function(data) {
      const teamName = data.teamName;
-     teamProfileArr.push(teamName);
+     teamMemberArray.push(teamName);
      addManagerProfile();
   });
 };
