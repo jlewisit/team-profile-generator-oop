@@ -10,6 +10,7 @@ const employeeQuestions = require("./lib/Employee-questions");
 const managerQuestions = require("./lib/Manager-questions");
 const engineerQuestions = require("./lib/Engineer-questions");
 const internQuestions = require("./lib/Intern-questions");
+const containHtml = require("./lib/html-template");
 
 // Array of team members
 var teamMemberArray = [];
@@ -19,14 +20,14 @@ const writeToFile = (htmlHolderArray) => {
   return new Promise((resolve, reject) => {
     // Make output file name === team name
     outputFileName = teamMemberArray[0];
+    outputFileName = outputFileName.replace(/ /g, "-");
 
 fs.writeFile( `./dist/${outputFileName}.html`, htmlHolderArray.join( "" ), function(err) {
   // If there's an error, reject the Promise and send the error to the 
   // Promise's `.catch() ` method.
   if (err) {
         reject(err);
-     // Return ouf of the function here to make sure the Promise doesn't
-     // accidentally execute the resolve() function as well.
+     // Return ouf of the function 
      return;
     };
 
@@ -44,7 +45,7 @@ fs.writeFile( `./dist/${outputFileName}.html`, htmlHolderArray.join( "" ), funct
 
 // Generate HTML
 function generateHtmlFile() {
-  const htmlHolderArray = htmlHolderArray.generateHtml(teamMemberArray);
+  const htmlHolderArray = containHtml.generateHtml(teamMemberArray);
   writeToFile(htmlHolderArray);
 }
 
