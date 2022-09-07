@@ -44,7 +44,7 @@ fs.writeFile( `./dist/${outputFileName}.html`, htmlHolderArray.join( "" ), funct
 
 // Generate HTML
 function generateHtmlFile() {
-  const htmlHolderArray = htmlHolder.generateHtml(teamMemberArray);
+  const htmlHolderArray = htmlHolderArray.generateHtml(teamMemberArray);
   writeToFile(htmlHolderArray);
 }
 
