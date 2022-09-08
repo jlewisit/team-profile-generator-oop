@@ -23,16 +23,14 @@ const writeToFile = (htmlHolderArray) => {
     outputFileName = outputFileName.replace(/ /g, "-");
 
 fs.writeFile( `./dist/${outputFileName}.html`, htmlHolderArray.join( "" ), function(err) {
-  // If there's an error, reject the Promise and send the error to the 
-  // Promise's `.catch() ` method.
+  // If there's an error, reject the Promise and send the error to Promise's `.catch() ` method
   if (err) {
         reject(err);
      // Return ouf of the function 
      return;
     };
 
-  // If everything went well, resolve the Promise and send the succesful
-  // data to the `.then()` method.
+  // If all went well, resolve Promise and send succesful data to `.then()` method
   resolve({
         ok: true,
         message: "All done! Your output HTML file is located in the 'dist' folder."
@@ -41,15 +39,13 @@ fs.writeFile( `./dist/${outputFileName}.html`, htmlHolderArray.join( "" ), funct
 });
 };
 
-////////////////////////////////
-
 // Generate HTML
 function generateHtmlFile() {
   const htmlHolderArray = containHtml.generateHtml(teamMemberArray);
   writeToFile(htmlHolderArray);
 }
 
-// Add the intern profile to the teamMemberArray array.
+// Add intern profile to teamMemberArray
 function addInternProfile() {
   inquirer.prompt(internQuestions)
   .then (function(data) {
@@ -61,15 +57,12 @@ function addInternProfile() {
 
      teamMemberArray.push(teamMember);
 
-     // Populate the menu choices again to see what the user wants to do next.
+     // Populate menu choices again to see what user wants next
      addNonManagerTeamMember();
   });
 };
 
-////////////////////////////////////////////
-////////////////////////////////////////////
-
-// Add the engineer profile to the teamMemberArray array.
+// Add engineer profile to teamMemberArray
 function addEngineerProfile() {
   inquirer.prompt(engineerQuestions)
   .then (function(data) {
@@ -86,32 +79,29 @@ function addEngineerProfile() {
   });
 };
 
-////////////////////////////////////////////
-////////////////////////////////////////////
-
-// Populate the menu choices again to see what the user wants to do next.
-// Call the appropriate function based on the user's choice.
+// Populate menu choices again to see what user wants next
+// Call appropriate function based on user's choice
 function addNonManagerTeamMember() {
   inquirer.prompt(employeeQuestions)
   .then(function(data) {
      switch (data.menuChoices) {
+        case "Add an additional Manager Profile":
+          addManagerProfile();
+          break;
         case "Add an Engineer Profile":
            addEngineerProfile();
            break;
         case "Add an Intern Profile":
            addInternProfile();
            break;
-        case "Done Generating Profiles":
+        case "Done generating profiles":
            generateHtmlFile();
         break;
      };
   });
 };
 
-////////////////////////////////////////////
-////////////////////////////////////////////
-
-// Add the engineer profile to the teamMemberArray array.
+// Add engineer profile to teamMemberArray
 function addManagerProfile() {
   inquirer.prompt(managerQuestions)
   .then(function(data) {
@@ -123,16 +113,12 @@ function addManagerProfile() {
      
      teamMemberArray.push(teamMember);
 
-     // Populate the menu choices again to see what the user wants to do next.
+     // Populate menu choices again to see what user wants next
      addNonManagerTeamMember();
   });
 };
 
-////////////////////////////////////////////
-////////////////////////////////////////////
-
-// Start the application by displaying a welcome message.
-// Then populate prompts to get the user input for the manager profile.
+// Prompts to get the user input for the manager profile
 function init() {
   inquirer.prompt([
      {
@@ -156,8 +142,5 @@ function init() {
   });
 };
 
-////////////////////////////////////////////
-////////////////////////////////////////////
-
-// Function call to initialize application.
+// Initializes application
 init();
