@@ -30,7 +30,7 @@ fs.writeFile( `./dist/${outputFileName}.html`, htmlHolderArray.join( "" ), funct
      return;
     };
 
-  // If all went well, resolve Promise and send succesful data to `.then()` method
+  // If successful, resolve promise and send data to `.then()` method
   resolve({
         ok: true,
         message: "All done! Your output HTML file is located in the 'dist' folder."
@@ -58,7 +58,7 @@ function addInternProfile() {
      teamMemberArray.push(teamMember);
 
      // Populate menu choices again to see what user wants next
-     addNonManagerTeamMember();
+     addAdditionalTeamMember();
   });
 };
 
@@ -75,13 +75,13 @@ function addEngineerProfile() {
      teamMemberArray.push(teamMember);
 
      // Populate the menu choices again to see what the user wants to do next.
-     addNonManagerTeamMember();
+     addAdditionalTeamMember();
   });
 };
 
 // Populate menu choices again to see what user wants next
 // Call appropriate function based on user's choice
-function addNonManagerTeamMember() {
+function addAdditionalTeamMember() {
   inquirer.prompt(employeeQuestions)
   .then(function(data) {
      switch (data.menuChoices) {
@@ -114,11 +114,11 @@ function addManagerProfile() {
      teamMemberArray.push(teamMember);
 
      // Populate menu choices again to see what user wants next
-     addNonManagerTeamMember();
+     addAdditionalTeamMember();
   });
 };
 
-// Prompts to get the user input for the manager profile
+// Prompts to get user input for the manager profile
 function init() {
   inquirer.prompt([
      {
@@ -129,7 +129,7 @@ function init() {
               return true;
            }
            else {
-              console.log( "Input your team name:" );
+              console.log("Input your team name:");
               return false;
            };
         }
