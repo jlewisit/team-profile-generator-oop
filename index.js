@@ -10,7 +10,6 @@ const employeeQuestions = require("./lib/Employee-questions");
 const managerQuestions = require("./lib/Manager-questions");
 const engineerQuestions = require("./lib/Engineer-questions");
 const internQuestions = require("./lib/Intern-questions");
-// const containHtml = require("./lib/html-template");
 const generate = require("./lib/html-template");
 
 // Array of team members
@@ -96,7 +95,6 @@ function addAdditionalTeamMember() {
            addInternProfile();
            break;
         case "Done generating profiles":
-         //   generateHtmlFile();
          let data = generate(teamMemberArray);
          writeToFile(data);
          console.log(teamMemberArray);
@@ -154,18 +152,3 @@ init();
 
 
 
-
-
-// {
-//    type: "list",
-//    name: "addAdditionalTeamMembers",
-//    message: "Would you like to add more team members?"
-//    choices: ["yes", "no"],
-// },
-// ])
-// .then(answers => {
-//    const{name, id, email, officeNumber} = answers;
-//    const manager = new Manager(name, id, email, officeNumber);
-//    teamMemberArray.push(manager);
-//    (answers.queryAdditionalReports === "Yes") ? addReport(): generateHtml(teamArray);
-// })
