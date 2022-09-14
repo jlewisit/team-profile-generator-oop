@@ -11,6 +11,7 @@ const managerQuestions = require("./lib/Manager-questions");
 const engineerQuestions = require("./lib/Engineer-questions");
 const internQuestions = require("./lib/Intern-questions");
 // const containHtml = require("./lib/html-template");
+const generate = require("./lib/html-template");
 
 // Array of team members
 var teamMemberArray = [];
@@ -95,7 +96,9 @@ function addAdditionalTeamMember() {
            addInternProfile();
            break;
         case "Done generating profiles":
-           generateHtmlFile();
+         //   generateHtmlFile();
+         generate(teamMemberArray);
+         console.log(teamMemberArray);
         break;
      };
   });
@@ -144,3 +147,24 @@ function init() {
 
 // Initializes application
 init();
+
+
+
+
+
+
+
+
+// {
+//    type: "list",
+//    name: "addAdditionalTeamMembers",
+//    message: "Would you like to add more team members?"
+//    choices: ["yes", "no"],
+// },
+// ])
+// .then(answers => {
+//    const{name, id, email, officeNumber} = answers;
+//    const manager = new Manager(name, id, email, officeNumber);
+//    teamMemberArray.push(manager);
+//    (answers.queryAdditionalReports === "Yes") ? addReport(): generateHtml(teamArray);
+// })
