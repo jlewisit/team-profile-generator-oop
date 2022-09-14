@@ -23,7 +23,7 @@ const writeToFile = (htmlHolderArray) => {
     outputFileName = teamMemberArray[0];
     outputFileName = outputFileName.replace(/ /g, "-");
 
-fs.writeFile( `./dist/${outputFileName}.html`, htmlHolderArray.join( "" ), function(err) {
+fs.writeFile( `./dist/${outputFileName}.html`, htmlHolderArray, function(err) {
   // If there's an error, reject the Promise and send the error to Promise's `.catch() ` method
   if (err) {
         reject(err);
@@ -97,7 +97,8 @@ function addAdditionalTeamMember() {
            break;
         case "Done generating profiles":
          //   generateHtmlFile();
-         generate(teamMemberArray);
+         let data = generate(teamMemberArray);
+         writeToFile(data);
          console.log(teamMemberArray);
         break;
      };
