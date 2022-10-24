@@ -1,6 +1,6 @@
 # Team Profile Generator
 
-# My objective for this project is to practice my object oriencted programming skills.  I am building a Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. 
+My objective for this project is to practice my object oriencted programming skills.  I am building a Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. 
 
 * This application is not yet complete. 
 
